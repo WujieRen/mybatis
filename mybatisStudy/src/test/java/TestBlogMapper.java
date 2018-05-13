@@ -26,4 +26,21 @@ public class TestBlogMapper {
             MyBatisUtil.closeSession(session);
         }
     }
+
+    @Test
+    public void getBlogUserMapList() {
+        SqlSession session = null;
+        try {
+            session = MyBatisUtil.getSession();
+            List<Blog> blogUserMapList = session.selectList(Blog.class.getName()+".getBlogUserMapList");
+            for(Blog blog : blogUserMapList) {
+                System.out.println(blog);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+        }
+    }
 }

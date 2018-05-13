@@ -7,4 +7,22 @@
         /*SELECT * FROM blog*/
         SELECT id,title titleName,content FROM blog
     </select>
+
+    <!--多对一关系映射-->
+    <select id="getBlogUserMapList" resultMap="blogUserMap">
+        SELECT b.id bid,title,content,u.id uid,username,password,email
+        FROM blog b,user u
+        WHERE b.id=u.id
+    </select>
+    <resultMap id="blogUserMap" type="Blog">
+        <id property="id" column="bid"/>
+        <result property="titleName" column="title" />
+        <result property="content" column="content" />
+        <association property="user" javaType="User">
+            <result property="id" column="uid" />
+            <result property="username" column="username" />
+            <result property="password" column="password" />
+            <result property="email" column="email" />
+        </association>
+    </resultMap>
 </mapper>
