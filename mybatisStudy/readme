@@ -52,4 +52,5 @@ MyBatis
     - 分页查询
         $ 的使用
         log4j的使用
+    - package元素的使用
 

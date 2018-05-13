@@ -22,7 +22,7 @@ public class TestMyBatis {
         //SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, "developmentDemo");
         SqlSession session = sqlSessionFactory.openSession();
-        User user = new User("renwujie", "rwj", "rwj@eurasia.edu");
+        User user = new User("sixin", "sx", "sx@eurasia.edu");
         session.insert("com.mybatis.model.User.addUser", user);
         session.commit();
     }
@@ -103,7 +103,7 @@ public class TestMyBatis {
             page.setPageIndex(1);//第一次写没给pageIndex值，结果报错找半天。
             page.setOrder("id");
             page.setOrderWay("desc");
-            page.setPageSize(5);
+            page.setPageSize(2);
             List<User> userPageList = session.selectList(User.class.getName()+".getPageUserList", page);
             //System.out.println(userPageList.size());
             for(User user : userPageList) {
