@@ -1,0 +1,17 @@
+MyBatis
+    - 是做什么的？
+        MyBatis是一款优秀的持久层框架，它支持定制化SQL、存储过程以及原生高级映射。MyBatis避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。
+        MyBatis可以使用简单的XML或注解来配置和映射原生信息，将接口和Java的POJOs(Plain Old Java Objects,普通Java对象)映射成数据库中的记录。
+        (引自：http://www.mybatis.org/mybatis-3/zh/index.html)
+    - 环境配置
+        1. http://www.mybatis.org/mybatis-3/zh/configuration.html#environments
+        2. 所有需要配置.xml的地方默认就在/resources/下，直接相对于resources下的路径即可。
+    - simple demo: insert data
+        遇到错误；
+            1.错误略，主要原因是在执行session.CRUD()时的第一个参数是XXXMapper.xml中的namespace.id
+            2.### Error updating database.  Cause: java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone.
+              ### Cause: java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone. Y
+              解决：
+                jdbc:mysql://localhost:3306/testmybatis?serverTimezone=UTC
+              reference：
+                https://blog.csdn.net/yefengzhichen/article/details/51834511
