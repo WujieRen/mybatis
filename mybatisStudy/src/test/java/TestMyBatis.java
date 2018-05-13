@@ -23,4 +23,15 @@ public class TestMyBatis {
         session.insert("com.mybatis.model.User.addUser", user);
         session.commit();
     }
+
+    @Test
+    public void getUserCount() throws IOException {
+        String resource = "mybatis.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, "developmentDemo");
+        SqlSession session = sqlSessionFactory.openSession();
+        int count = session.selectOne("com.mybatis.model.User.getUserCount");
+        //Assert.assertEquals(10, count);//断言
+        System.out.println(count);
+    }
 }

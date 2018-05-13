@@ -3,8 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.model.User">
+    <!--simpleDemo:insert -->
     <insert id="addUser">
-        insert into user(username, password, email)
+        INSERT INTO user(username, password, email)
         VALUES (#{username},#{password},#{email})
     </insert>
+
+    <!-- 查询用户表记录数 -->
+    <select id="getUserCount" resultType="int">
+        SELECT COUNT(1) from USER
+    </select>
+
 </mapper>
