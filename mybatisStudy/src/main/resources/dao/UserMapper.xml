@@ -35,4 +35,14 @@
     <delete id="deleteUser" parameterType="int">
         DELETE FROM USER WHERE id = #{id}
     </delete>
+
+    <!-- 分页查询 -->
+    <select id="getPageUserList" parameterType="Pager" resultType="User">
+    <!--
+        #：占位符，根据参数类型将参数的值设置进来。
+        $：传递过来的是啥就塞进啥
+    -->
+        SELECT * FROM USER
+        ORDER BY ${order} ${orderWay} LIMIT #{pageOffSet},#{pageSize}
+    </select>
 </mapper>

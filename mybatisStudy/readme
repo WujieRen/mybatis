@@ -48,4 +48,8 @@ MyBatis
         </typeAliases>
         注意配置属性时的顺序。
         ![](/img/MyBatis配置顺序.png)
-    -
+    - 增删改查
+    - 分页查询
+        $ 的使用
+        log4j的使用
+

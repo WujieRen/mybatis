@@ -1,3 +1,4 @@
+import com.mybatis.util.Pager;
 import com.mybatis.model.User;
 import com.mybatis.util.MyBatisUtil;
 import org.apache.ibatis.io.Resources;
@@ -69,6 +70,7 @@ public class TestMyBatis {
             session.update(User.class.getName()+".updateUser", user);
             session.commit();//不强制commit有时候不生效
         } catch (Exception e) {
+            session.rollback();
             e.printStackTrace();
         } finally {
             MyBatisUtil.closeSession(session);
@@ -84,10 +86,33 @@ public class TestMyBatis {
             session.delete(User.class.getName()+".deleteUser", id);
             session.commit();
         } catch (Exception e) {
+            session.rollback();
             e.printStackTrace();
         } finally {
             MyBatisUtil.closeSession(session);
         }
     }
 
+    @Test
+    public void getPageUserList() {
+        SqlSession session = null;
+        try {
+            session = MyBatisUtil.getSession();
+            Pager page = new Pager();
+            //Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 2
+            page.setPageIndex(1);//第一次写没给pageIndex值，结果报错找半天。
+            page.setOrder("id");
+            page.setOrderWay("desc");
+            page.setPageSize(5);
+            List<User> userPageList = session.selectList(User.class.getName()+".getPageUserList", page);
+            //System.out.println(userPageList.size());
+            for(User user : userPageList) {
+                System.out.println(user.getId());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+        }
+    }
 }

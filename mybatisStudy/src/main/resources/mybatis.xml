@@ -23,9 +23,11 @@
 
     <!-- 引入Properties文件 -->
     <properties resource="jdbc.properties" />
+
     <!-- 给类型定义别名 -->
     <typeAliases>
         <typeAlias type="com.mybatis.model.User" alias="User" />
+        <typeAlias type="com.mybatis.util.Pager" alias="Pager" />
     </typeAliases>
 
     <environments default="development">
