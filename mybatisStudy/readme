@@ -53,4 +53,6 @@ MyBatis
         $ 的使用
         log4j的使用
     - package元素的使用
+    - 新建BlogMapper
+        POJO中名字和数据库中名字不对应会产生null值。这种情况下可通过再sql中给别名解决
 

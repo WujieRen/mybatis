@@ -26,10 +26,11 @@
 
     <!-- 给类型定义别名 -->
     <typeAliases>
-        <!--<typeAlias type="com.mybatis.model.User" alias="User" />-->
+        <typeAlias type="com.mybatis.model.User" alias="User" />
         <typeAlias type="com.mybatis.util.Pager" alias="Pager" />
         <!--会为指定包下的所有类创建别名（默认别名是相应类的类名）-->
-        <package name="com.mybatis.model" />
+        <!--<package name="com.mybatis.model" />-->
+        <typeAlias type="com.mybatis.model.Blog" alias="Blog" />
     </typeAliases>
 
     <environments default="development">
@@ -46,5 +47,6 @@
 
     <mappers>
         <mapper resource="dao/UserMapper.xml" />
+        <mapper resource="dao/BlogMapper.xml" />
     </mappers>
 </configuration>

@@ -32,7 +32,9 @@ public class MyBatisUtil {
     }
 
     public static void closeSession(SqlSession session) {
-        session.close();
+        if(session!=null) {
+            session.close();
+        }
     }
 
 }
