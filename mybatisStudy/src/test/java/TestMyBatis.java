@@ -55,4 +55,39 @@ public class TestMyBatis {
            MyBatisUtil.closeSession(session);
         }
     }
+
+    @Test
+    public void updateUser() {
+        SqlSession session = null;
+        try {
+            session = MyBatisUtil.getSession();
+            int id = 1;
+            //先loaUser
+            User user = session.selectOne(User.class.getName()+".loadAUser", id);
+            user.setUsername("sixin");
+            //再修改
+            session.update(User.class.getName()+".updateUser", user);
+            session.commit();//不强制commit有时候不生效
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+        }
+    }
+
+    @Test
+    public void deleteUser() {
+        SqlSession session = null;
+        try {
+            session = MyBatisUtil.getSession();
+            int id = 1;
+            session.delete(User.class.getName()+".deleteUser", id);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+        }
+    }
+
 }
