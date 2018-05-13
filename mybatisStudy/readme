@@ -33,3 +33,13 @@ MyBatis
             http://www.mybatis.org/mybatis-3/zh/getting-started.html_作用域（Scope）和生命周期
     - 和MySQl、Hibernate对比有什么优缺点？
     - 小插曲：建造者模式、工厂模式
+    - properties元素使用
+        两种方式:
+            ①
+                <properties>
+                    <property name="dirver" value="${driver}"/>
+                    ...
+                </properties>
+            ②
+                <properties resource="jdbc.properties" />
+
