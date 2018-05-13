@@ -14,4 +14,9 @@
         SELECT COUNT(1) from USER
     </select>
 
+    <!-- TypeAliases demo -->
+    <select id="getAllUser" resultType="User">
+        SELECT * FROM USER
+    </select>
+
 </mapper>

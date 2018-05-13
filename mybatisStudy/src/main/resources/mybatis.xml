@@ -21,7 +21,13 @@
         ...
     </properties>-->
 
+    <!-- 引入Properties文件 -->
     <properties resource="jdbc.properties" />
+    <!-- 给类型定义别名 -->
+    <typeAliases>
+        <typeAlias type="com.mybatis.model.User" alias="User" />
+    </typeAliases>
+
     <environments default="development">
         <environment id="developmentDemo">
             <transactionManager type="JDBC" />

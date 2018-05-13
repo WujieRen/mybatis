@@ -42,4 +42,10 @@ MyBatis
                 </properties>
             ②
                 <properties resource="jdbc.properties" />
-
+    - TypeAliases属性使用
+        <typeAliases>
+            <typeAlias type="com.mybatis.model.User" alias="User" />
+        </typeAliases>
+        注意配置属性时的顺序。
+        ![](/img/MyBatis配置顺序.png)
+    -
