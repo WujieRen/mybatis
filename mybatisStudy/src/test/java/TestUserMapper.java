@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by renwujie on 2018/05/13 at 10:19
  */
-public class TestMyBatis {
+public class TestUserMapper {
     @Test
     public void test01() throws IOException {
         String resource = "mybatis.xml";
@@ -108,6 +108,22 @@ public class TestMyBatis {
             //System.out.println(userPageList.size());
             for(User user : userPageList) {
                 System.out.println(user.getId());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+        }
+    }
+
+    @Test
+    public void getUserBlogMapperList() {
+        SqlSession session = null;
+        try {
+            session = MyBatisUtil.getSession();
+            List<User> userBlogsList = session.selectList(User.class.getName()+".getUserBlogMapList");
+            for(User user : userBlogsList) {
+                System.out.println(user);
             }
         } catch (Exception e) {
             e.printStackTrace();

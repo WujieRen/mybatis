@@ -45,4 +45,22 @@
         SELECT * FROM USER
         ORDER BY ${order} ${orderWay} LIMIT #{pageOffSet},#{pageSize}
     </select>
+
+    <!--一对多关联：展示多的一方-->
+    <select id="getUserBlogMapList" resultMap="userBlogMap">
+        SELECT u.id uid,username,password,email,b.id bid,title titleName,content
+        from user u,blog b
+        where u.id=b.id
+    </select>
+    <resultMap id="userBlogMap" type="User">
+        <id property="id" column="uid" />
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <collection property="blogs" ofType="Blog">
+            <result property="id" column="bid" />
+            <result property="title" column="title" />
+            <result property="content" column="content" />
+        </collection>
+    </resultMap>
 </mapper>

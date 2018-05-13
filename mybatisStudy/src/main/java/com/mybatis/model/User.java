@@ -1,5 +1,7 @@
 package com.mybatis.model;
 
+import java.util.Set;
+
 /**
  * Created by renwujie on 2018/05/13 at 10:24
  */
@@ -8,6 +10,7 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private Set<Blog> blogs;
 
     public User() {
     }
@@ -50,6 +53,14 @@ public class User {
         this.email = email;
     }
 
+    public Set<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(Set<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -57,6 +68,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", blogs=" + blogs +
                 '}';
     }
 }
