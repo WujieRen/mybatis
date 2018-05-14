@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,10 +63,10 @@ public class TestUserMapper {
         SqlSession session = null;
         try {
             session = MyBatisUtil.getSession();
-            int id = 1;
+            int id = 2;
             //先loaUser
             User user = session.selectOne(User.class.getName()+".loadAUser", id);
-            user.setUsername("sixin");
+            user.setUsername("fengyu");
             //再修改
             session.update(User.class.getName()+".updateUser", user);
             session.commit();//不强制commit有时候不生效
@@ -125,6 +126,27 @@ public class TestUserMapper {
             for(User user : userBlogsList) {
                 System.out.println(user);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+        }
+    }
+
+    @Test
+    public void batchAddUser() {
+        SqlSession session = null;
+        try {
+            session = MyBatisUtil.getSession();
+            List<User> users = new ArrayList<User>();
+            User u1 = new User("fengyu", "fy", "fy@eurasia.edu");
+            User u2 = new User("congcong", "fcc", "cc@eurasia.edu");
+            User u3 = new User("yangjin", "yj", "yj@eurasia.edu");
+            users.add(u1);
+            users.add(u2);
+            users.add(u3);
+            session.insert(User.class.getName()+".batchAddUser", users);
+            session.commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

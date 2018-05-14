@@ -9,7 +9,9 @@
         VALUES (#{username},#{password},#{email})
     </insert>
 
-    <!-- 查询用户表记录数 -->
+    <!-- 查询用户表记录数
+        resultType如果设置了别名，不区分大小写
+    -->
     <select id="getUserCount" resultType="int">
         SELECT COUNT(1) from USER
     </select>
@@ -17,6 +19,25 @@
     <!-- TypeAliases demo -->
     <select id="getAllUser" resultType="User">
         SELECT * FROM USER
+        <!--<choose>
+            <when test="username!=null">
+                ...
+            </when>
+            <when test="">
+                ...
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>-->
+        <!--<select id="getAllUser" resultType="User">-->
+        /*对于不知名的基本数据类型传参，不可以用_parameter传参（甚至可以省略parameterType）*/
+        <!--<if test="_parameter=null">
+          WHERE username LIKE concat('%',#{parameter},'%')
+        </if>
+        <if test="id!=0">
+          AND id = #{id}
+        </if>-->
     </select>
 
     <!-- 增删改查 -->
@@ -26,8 +47,21 @@
         WHERE id = #{id}
     </select>
     <update id="updateUser" parameterType="User">
+        <!--UPDATE USER
+        SET username = #{username}, password = #{password}, email = #{email}
+        WHERE id = #{id}-->
       UPDATE USER
-      SET username = #{username}, password = #{password}, email = #{email}
+      <set>
+          <if test="username!=null">
+              username = #{username},
+          </if>
+          <if test="password!=null">
+              password = #{password},
+          </if>
+          <if test="email!=null">
+              email = #{email}
+          </if>
+      </set>
       WHERE id = #{id}
     </update>
 
@@ -63,4 +97,13 @@
             <result property="content" column="content" />
         </collection>
     </resultMap>
+
+    <insert id="batchAddUser">
+        INSERT INTO user(username, password, email)
+        VALUES
+        <foreach collection="list" item="item" separator="," >
+            (#{item.username},#{item.password},#{item.email})
+        </foreach>
+
+    </insert>
 </mapper>
