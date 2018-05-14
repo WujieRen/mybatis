@@ -1,3 +1,4 @@
+import com.mybatis.mapper.UserMapper;
 import com.mybatis.util.Pager;
 import com.mybatis.model.User;
 import com.mybatis.util.MyBatisUtil;
@@ -147,6 +148,21 @@ public class TestUserMapper {
             users.add(u3);
             session.insert(User.class.getName()+".batchAddUser", users);
             session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+        }
+    }
+
+    @Test
+    public void testUserMapperGetUserCount(){
+        SqlSession session = null;
+        try {
+            session = MyBatisUtil.getSession();
+            //int count = session.getMapper(UserMapper.class).getUserCount();
+            int count = session.getMapper(UserMapper.class).getUserCountByAnnotion();
+            System.out.println(count);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

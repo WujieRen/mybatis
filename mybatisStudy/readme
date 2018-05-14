@@ -71,5 +71,7 @@ MyBatis
             choose、when、otherwise
             trim、where、set
             foreach
-
+    - 基于Mapper接口的查询
+        1.和.xml对应
+        2.注解
 

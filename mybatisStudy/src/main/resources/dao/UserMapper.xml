@@ -2,7 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.model.User">
+<!--<mapper namespace="com.mybatis.model.User">-->
+<mapper namespace="com.mybatis.mapper.UserMapper">
     <!--simpleDemo:insert a simple data-->
     <insert id="addUser">
         INSERT INTO user(username, password, email)
@@ -104,6 +105,5 @@
         <foreach collection="list" item="item" separator="," >
             (#{item.username},#{item.password},#{item.email})
         </foreach>
-
     </insert>
 </mapper>
