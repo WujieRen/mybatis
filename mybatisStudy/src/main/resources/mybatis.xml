@@ -24,6 +24,12 @@
     <!-- 引入Properties文件 -->
     <properties resource="jdbc.properties" />
 
+    <!-- 开启全局二级缓存 -->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+
+    </settings>
+
     <!-- 给类型定义别名 -->
     <typeAliases>
         <typeAlias type="com.mybatis.model.User" alias="User" />

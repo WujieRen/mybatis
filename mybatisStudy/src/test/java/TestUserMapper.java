@@ -169,4 +169,53 @@ public class TestUserMapper {
             MyBatisUtil.closeSession(session);
         }
     }
+
+    @Test
+    public void testSecondCache01() {
+        SqlSession session = null;
+        SqlSession session1 = null;
+
+        try {
+            session = MyBatisUtil.getSession();
+            int count = session.selectOne(User.class.getName()+".getUserCount");
+            System.out.println(count);
+            session.commit();
+            MyBatisUtil.closeSession(session);
+
+            session1 = MyBatisUtil.getSession();
+            count = session1.selectOne(User.class.getName()+".getUserCount");
+            System.out.println(count);
+            session1.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+        }
+    }
+
+    @Test
+    public void testSecondCache02() {
+        SqlSession session = null;
+        SqlSession session1 = null;
+
+        try {
+            session = MyBatisUtil.getSession();
+            User user = new User("saozi", "sz", "sz@eurasia.edu");
+            int count = session.selectOne(User.class.getName()+".getUserCount");
+            session.insert(User.class.getName()+".addUser", user);
+            //发生CUD操作会导致二级缓存区间更新
+            session.commit();
+
+            session1 = MyBatisUtil.getSession();
+            count = session1.selectOne(User.class.getName()+".getUserCount");
+            System.out.println(count);
+            session1.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            MyBatisUtil.closeSession(session);
+            MyBatisUtil.closeSession(session1);
+
+        }
+    }
 }
