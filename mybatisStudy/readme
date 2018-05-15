@@ -8,7 +8,7 @@ MyBatis
         2. 所有需要配置.xml的地方默认就在/resources/下，直接相对于resources下的路径即可。
     - simple demo: insert data
         遇到错误；
-            1.错误略，主要原因是在执行session.CRUD()时的第一个参数是XXXMapper.xml中的namespace.id
+            1.错误略，原因是在执行session.CRUD()时的第一个参数是XXXMapper.xml中的namespace.id
             2.### Error updating database.  Cause: java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone.
               ### Cause: java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone. Y
               解决：
